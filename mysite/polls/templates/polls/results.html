@@ -1,0 +1,32 @@
+  
+{% extends "polls/base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Poll Result</h3>
+            </div>
+
+            <div class="panel-body">
+                <h3>{{ question.question_text }}</h3>
+            </div>
+
+            <ul class="list-group">
+                {% for choice in question.choice_set.all %}
+                    <li class="list-group-item">{{ choice.choice_text }} &mdash; <strong></strong>{{ choice.votes }}</strong> vote{{ choice.votes|pluralize }}</li>
+                {% endfor %}
+            </ul>
+            
+            <div class="panel-footer">
+                Total &mdash; <strong>{{ question.total_votes.votes__sum }} vote{{ question.total_votes.votes__sum|pluralize }}</strong>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
